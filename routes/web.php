@@ -23,12 +23,21 @@ use Illuminate\Support\Facades\Route;
 
 
 // only show data form data base and  show in my table 
-Route::get('/',[StudentController::class,'show']);
+Route::get('/',[StudentController::class,'show'])->name('home');
 
-// i want to show in 
+// now add the user in data base
 
+Route::post('/add',[StudentController::class,'StudentAdd_data'])->name('add-student');
+
+
+
+
+// i want to show  a single user when click the view buttun
 Route::get('/studentid/{id}',[StudentController::class, 'SingleUsershowData'])->name('single-user-id');
 
+
+// main ab delete ka bana o ga 
+Route::get('/delete-student/{id}',[StudentController::class,'Delete_student_record'])->name('student_recod_delete');
 
 
 

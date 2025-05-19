@@ -10,7 +10,12 @@
     integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <!-- now i am ad link sweet alert message  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js">
+  <!-- SweetAlert2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Animate.css for custom animation -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" />
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -19,6 +24,9 @@
 
   <!-- Bootstrap JS (include after jQuery) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
 
   {{-- uay css ki file add ina --}}
   <link rel="stylesheet" href="{{ asset('css/admin.css')}}">
@@ -123,7 +131,10 @@
       <!-- uay mray pass  -->
       <section class="section-2">
         <table class="table">
-          <h3 class="mb-4"> Add Students <a href="" class="btn btn-success">Add New</a></h3>
+          <h3 class="mb-4">
+            Add Students
+            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addStudentModal">Add New</a>
+          </h3>
           <thead>
             <tr>
               <th scope="col">Id</th>
@@ -141,7 +152,7 @@
 
             @foreach ($data as $id => $student)
             <tr>
-              <td>{{$student -> id}}</td>
+              <td>{{$loop->iteration }}</td>
               <td>{{$student -> name}}</td>
               <td>{{$student -> email}}</td>
               <td>{{$student -> phone}}</td>
@@ -150,8 +161,11 @@
               <td>{{$student -> dob}}</td>
               <td> <a href="{{route('single-user-id',$student -> id)}}" class="btn btn-primary btn sm">View</a>
 
-            <a href="" class="btn btn-danger btn sm">Delete</a>
-          <a href="" class="btn btn-warning btn-sm">Update</a>
+                <a href="{{ route('student_recod_delete', $student->id) }}" class="btn btn-danger btn-sm delete-btn"
+                  data-id="{{ $student->id }}" data-name="{{ $student->name }}">
+                  Delete
+                </a>
+                <a href="" class="btn btn-warning btn-sm">Update</a>
               </td>
 
             </tr>
@@ -162,60 +176,165 @@
         </table>
       </section>
 
-      <!-- Edit User Modal -->
-      {{-- jab hum data ko insert karain guy --}}
 
-      <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+
+      {{-- add student then this model can open --}}
+      {{-- jab hum data ko insert karain guy --}}
+      <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <form id="editUserForm">
-              <div class="modal-header">
-                <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <input type="hidden" name="id" id="editUserId">
-                <div class="mb-3">
-                  <label for="editName" class="form-label">Name</label>
-                  <input type="text" class="form-control" name="name" id="editName" required>
-                </div>
-                <div class="mb-3">
-                  <label for="editEmail" class="form-label">Email</label>
-                  <input type="email" class="form-control" name="email" id="editEmail" required>
-                </div>
-                <div class="mb-3">
-                  <label for="editEmailVerify" class="form-label">Email Verify</label>
-                  <input type="text" class="form-control" name="email_verify" id="editEmailVerify" required>
 
+            <div class="modal-header">
+              <h1 class="modal-title fs-4" id="addStudentModalLabel">Add Student Data</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+              <form id="studentForm" action="{{ route('add-student')}}" method="POST" autocomplete="off">
+                @csrf
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" name="student_name" required>
                 </div>
 
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="student_email" required>
+                </div>
 
                 <div class="mb-3">
-                  <label for="editPassword" class="form-label">Password</label>
-                  <input type="text" class="form-control" name="password" id="editPassword" required>
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" id="phone" name="student_phone" required>
                 </div>
+
                 <div class="mb-3">
-                  <label for="editStatus" class="form-label">Status</label>
-                  <input type="text" class="form-control" name="status" id="editStatus" required>
+                  <label for="class" class="form-label">Class</label>
+                  <input type="text" class="form-control" id="class" name="student_class" required>
                 </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-success">Update</button>
-              </div>
-            </form>
+
+                <div class="mb-3">
+                  <label for="roll" class="form-label">Roll Number</label>
+                  <input type="text" class="form-control" id="roll" name="student_roll" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="dob" class="form-label">DOB</label>
+                  <input type="date" class="form-control" id="dob" name="student_dob" required>
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" form="studentForm" class="btn btn-primary">Submit</button>
+            </div>
+
           </div>
         </div>
       </div>
-
-
     </section>
 
 
 
     <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="{{ asset('js/admin.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script>
+      @if (session('status') === 'success')
+        Swal.fire({
+            icon: 'success',
+            title: 'Student Added',
+            text: 'The student has been added successfully!',
+            timer: 3000,
+            showConfirmButton: false
+        });
+    @elseif (session('status') === 'error')
+        Swal.fire({
+            icon: 'error',
+            title: 'Something went wrong',
+            text: 'Please try again.',
+            timer: 3000,
+            showConfirmButton: false
+        });
+    @elseif (session('status') === 'email_exists')
+        Swal.fire({
+            icon: 'warning',
+            title: 'Email Already Exists',
+            text: 'This email is already registered.',
+            timer: 3000,
+            showConfirmButton: false
+        });
+    @elseif (session('status') === 'roll_exists')
+        Swal.fire({
+            icon: 'warning',
+            title: 'Roll Number Exists',
+            text: 'This roll number is already registered.',
+            timer: 3000,
+            showConfirmButton: false
+        });
+    @endif
+    </script>
+
+
+
+
+
+
+
+    <script>
+      @if(session('status') === 'deleted')
+        Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'The record has been deleted successfully.',
+            timer: 2000,
+            showConfirmButton: false
+        });
+    @elseif(session('status') === 'not_deleted')
+        Swal.fire({
+            icon: 'error',
+            title: 'Failed!',
+            text: 'The record could not be deleted.',
+        });
+    @endif
+    </script>
+
+
+    {{-- delete sweet alert message --}}
+
+    <script>
+  $(document).ready(function () {
+    $('.delete-btn').on('click', function (e) {
+      e.preventDefault(); // Stop the link from navigating immediately
+
+      let link = $(this).attr('href');
+      let studentName = $(this).data('name') || 'this record';
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: `Do you want to delete ${studentName}? This action cannot be undone.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = link; // Now do the deletion
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
 
 
 </body>
