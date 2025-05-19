@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "name": "Ali Raza",
+    "email": "ali.raza@example.com",
+    "phone": "03123456789",
+    "class": "10th",
+    "roll_number": "R1001",
+    "dob": "2008-05-14",
+    "created_at": "2025-05-19T10:00:00",
+    "updated_at": "2025-05-19T10:00:00"
+  },
+  {
+    "id": 2,
+    "name": "Fatima Noor",
+    "email": "fatima.noor@example.com",
+    "phone": "03219876543",
+    "class": "9th",
+    "roll_number": "R1002",
+    "dob": "2009-08-23",
+    "created_at": "2025-05-19T10:01:00",
+    "updated_at": "2025-05-19T10:01:00"
+  },
+  {
+    "id": 3,
+    "name": "Usman Khan",
+    "email": "usman.khan@example.com",
+    "phone":  "03123456789",
+    "class": "8th",
+    "roll_number": "R1003",
+    "dob": "2010-03-10",
+    "created_at": "2025-05-19T10:02:00",
+    "updated_at": "2025-05-19T10:02:00"
+  },
+  {
+    "id": 4,
+    "name": "Ayesha Malik",
+    "email": "ayesha.malik@example.com",
+    "phone": "03335556666",
+    "class": "10th",
+    "roll_number": "R1004",
+    "dob": "2008-11-05",
+    "created_at": "2025-05-19T10:03:00",
+    "updated_at": "2025-05-19T10:03:00"
+  },
+  {
+    "id": 5,
+    "name": "Bilal Ahmed",
+    "email": "bilal.ahmed@example.com",
+    "phone": "03123456789",
+    "class": "7th",
+    "roll_number": "R1005",
+    "dob": "2011-06-19",
+    "created_at": "2025-05-19T10:04:00",
+    "updated_at": "2025-05-19T10:04:00"
+  },
+  {
+    "id": 6,
+    "name": "Hira Yousaf",
+    "email": "hira.yousaf@example.com",
+    "phone": "03001234567",
+    "class": "12th",
+    "roll_number": "R1006",
+    "dob": "2009-12-01",
+    "created_at": "2025-05-19T10:05:00",
+    "updated_at": "2025-05-19T10:05:00"
+  },
+  {
+    "id": 7,
+    "name": "Zain Ali",
+    "email": "zain.ali@example.com",
+    "phone": "03121234567",
+    "class": "9th",
+    "roll_number": "R1007",
+    "dob": "2009-12-01",
+    "created_at": "2025-05-19T10:06:00",
+    "updated_at": "2025-05-19T10:06:00"
+  },
+  {
+    "id": 8,
+    "name": "Sana Tariq",
+    "email": "sana.tariq@example.com",
+    "phone": "03455667788",
+    "class": "8th",
+    "roll_number": "R1008",
+    "dob": "2010-07-22",
+    "created_at": "2025-05-19T10:07:00",
+    "updated_at": "2025-05-19T10:07:00"
+  },
+  {
+    "id": 9,
+    "name": "Imran Shah",
+    "email": "imran.shah@example.com",
+    "phone": "03455667788",
+    "class": "10th",
+    "roll_number": "R1009",
+    "dob": "2008-09-30",
+    "created_at": "2025-05-19T10:08:00",
+    "updated_at": "2025-05-19T10:08:00"
+  },
+  {
+    "id": 10,
+    "name": "Mehwish Zafar",
+    "email": "mehwish.zafar@example.com",
+    "phone": "03005553311",
+    "class": "9th",
+    "roll_number": "R1010",
+    "dob": "2009-04-18",
+    "created_at": "2025-05-19T10:09:00",
+    "updated_at": "2025-05-19T10:09:00"
+  }
+]

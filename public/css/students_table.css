@@ -1,0 +1,185 @@
+/* Table Container */
+.section-2 {
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+/* Table Title */
+.section-2 h3 {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px !important;
+}
+
+.section-2 .btn-success {
+    background: #28a745;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.section-2 .btn-success:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.25);
+}
+
+/* Table Styling */
+.section-2 .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+    table-layout: fixed;
+}
+
+/* Table Header */
+.section-2 .table thead th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 500;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.section-2 .table thead th:first-child {
+    border-top-left-radius: 8px;
+    width: 5%;
+}
+
+.section-2 .table thead th:nth-child(2) {
+    width: 15%;
+}
+
+.section-2 .table thead th:nth-child(3) {
+    width: 20%;
+}
+
+.section-2 .table thead th:nth-child(4) {
+    width: 12%;
+}
+
+.section-2 .table thead th:nth-child(5),
+.section-2 .table thead th:nth-child(6),
+.section-2 .table thead th:nth-child(7) {
+    width: 10%;
+}
+
+.section-2 .table thead th:last-child {
+    border-top-right-radius: 8px;
+    width: 18%;
+    text-align: center;
+}
+
+/* Table Body */
+.section-2 .table tbody tr {
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.section-2 .table tbody tr:nth-child(even) {
+    background-color: #f9fafc;
+}
+
+.section-2 .table tbody tr:hover {
+    background-color: #f0f4ff;
+}
+
+.section-2 .table td {
+    padding: 12px 15px;
+    color: #4a5568;
+    font-size: 0.9rem;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+/* Action Buttons - Special Styling */
+.section-2 .table td:nth-last-child(4),
+.section-2 .table td:nth-last-child(3),
+.section-2 .table td:nth-last-child(2) {
+    padding: 0;
+    border: none;
+}
+
+.section-2 .table td:last-child {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.section-2 .btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s;
+    border: none;
+    min-width: 70px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.section-2 .btn-primary {
+    background: #3490dc;
+    color: white;
+}
+
+.section-2 .btn-danger {
+    background: #e3342f;
+    color: white;
+}
+
+.section-2 .btn-warning {
+    background: #ffed4a;
+    color: #212529;
+}
+
+.section-2 .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Table */
+@media (max-width: 992px) {
+    .section-2 .table thead th:last-child {
+        width: 25%;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-2 {
+        padding: 15px;
+    }
+    
+    .section-2 h3 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .section-2 .table thead th:last-child {
+        width: 30%;
+    }
+    
+    .section-2 .btn {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+        min-width: 60px;
+    }
+}
