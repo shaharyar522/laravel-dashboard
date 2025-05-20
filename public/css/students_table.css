@@ -124,6 +124,7 @@
 }
 
 .section-2 .btn {
+    margin: 4px;
     padding: 6px 10px;
     font-size: 0.8rem;
     border-radius: 4px;

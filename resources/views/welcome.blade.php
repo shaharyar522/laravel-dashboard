@@ -65,7 +65,8 @@
     <nav class="side-bar">
       <div class="user-p">
 
-        <img src="images/Profile picture.png" alt="Admin">
+    <img src="{{ asset('images/Profile picture.png') }}" alt="Admin">
+
 
         <p>Admin</p>
       </div>
@@ -113,7 +114,6 @@
             <span>Logout</span>
           </a>
         </li>
-
       </ul>
     </nav>
 
@@ -165,9 +165,8 @@
                   data-id="{{ $student->id }}" data-name="{{ $student->name }}">
                   Delete
                 </a>
-                <a href="" class="btn btn-warning btn-sm">Update</a>
+                <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">Update</a>
               </td>
-
             </tr>
             @endforeach
 
@@ -179,8 +178,8 @@
 
 
       {{-- add student then this model can open --}}
-      {{-- jab hum data ko insert karain guy --}}
-      <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentModalLabel"
+
+        <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -232,7 +231,7 @@
 
           </div>
         </div>
-      </div>
+       </div>
     </section>
 
 
@@ -307,7 +306,7 @@
     {{-- delete sweet alert message --}}
 
     <script>
-  $(document).ready(function () {
+      $(document).ready(function () {
     $('.delete-btn').on('click', function (e) {
       e.preventDefault(); // Stop the link from navigating immediately
 
@@ -330,7 +329,29 @@
       });
     });
   });
+    </script>
+
+    @if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: '{{ session('success') }}',
+        confirmButtonText: 'OK'
+    });
 </script>
+@endif
+
+@if(session('error'))
+<script>
+    Swal.fire({
+        icon: 'info',
+        title: 'No Update',
+        text: '{{ session('error') }}',
+        confirmButtonText: 'OK'
+    });
+</script>
+@endif
 
 
 

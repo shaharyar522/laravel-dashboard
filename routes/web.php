@@ -23,21 +23,33 @@ use Illuminate\Support\Facades\Route;
 
 
 // only show data form data base and  show in my table 
-Route::get('/',[StudentController::class,'show'])->name('home');
+Route::get('/', [StudentController::class, 'show'])->name('home');
 
 // now add the user in data base
 
-Route::post('/add',[StudentController::class,'StudentAdd_data'])->name('add-student');
+Route::post('/add', [StudentController::class, 'StudentAdd_data'])->name('add-student');
 
 
 
 
 // i want to show  a single user when click the view buttun
-Route::get('/studentid/{id}',[StudentController::class, 'SingleUsershowData'])->name('single-user-id');
+Route::get('/studentid/{id}', [StudentController::class, 'SingleUsershowData'])->name('single-user-id');
 
 
 // main ab delete ka bana o ga 
-Route::get('/delete-student/{id}',[StudentController::class,'Delete_student_record'])->name('student_recod_delete');
+Route::get('/delete-student/{id}', [StudentController::class, 'Delete_student_record'])->name('student_recod_delete');
+
+
+
+//update the web dataa hian
+Route::get('/update-student', [StudentController::class, 'Update_student_record']);
+
+
+//
+Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
+// ab main updte karo ga
+Route::put('/update/{id}', [StudentController::class, 'update_student_record'])->name('update_student_record');
+
 
 
 
@@ -51,4 +63,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

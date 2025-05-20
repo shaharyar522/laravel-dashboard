@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -92,7 +93,38 @@ class StudentController extends Controller
             return redirect()->back()->with('status', 'not_deleted');
         }
     }
-    
 
-    //
+
+    //updaate
+    // form say data ko oht lia hian model main show hn gy gya hain
+    public function edit($id)
+    {
+        $student = student::findOrFail($id);
+        return view('update-user', compact('student'));
+    }
+
+
+    // ab jb button par click hnga then data update hn jain ga database main bhi 
+
+    public function update_student_record(Request $req, string $id)
+    {
+        $student = DB::table('students')
+            ->where('id', $id)
+            ->update(
+                [
+                    'name'        => $req->input('name'),
+                    'email'       => $req->input('email'),
+                    'phone'       => $req->input('phone'),
+                    'class'       => $req->input('class'),
+                    'roll_number' => $req->input('roll_number'),
+                    'dob'         => $req->input('dob'),
+                    'updated_at'  => now(), // optional, if you're using timestamps 
+                ]
+            );
+        if ($student > 0) {
+            return redirect('/')->with('success', 'Student data has been updated successfully!');
+        } else {
+            return redirect('/')->with('error', 'No changes were made to the student record.');
+        }
+    }
 }
