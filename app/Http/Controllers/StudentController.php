@@ -99,15 +99,21 @@ class StudentController extends Controller
     // form say data ko oht lia hian model main show hn gy gya hain
     public function edit($id)
     {
-        $student = student::findOrFail($id);
-        return view('update-user', compact('student'));
+        $student = Student::findOrFail($id);
+        return redirect()->route('home')->with([
+            'student' => $student,
+            'showUpdateModal' => true,
+        ]);
     }
+
 
 
     // ab jb button par click hnga then data update hn jain ga database main bhi 
 
     public function update_student_record(Request $req, string $id)
     {
+
+
         $student = DB::table('students')
             ->where('id', $id)
             ->update(

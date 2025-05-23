@@ -7,7 +7,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-
 <body>
 
   <!-- Modal -->
@@ -19,7 +18,7 @@
         <div class="modal-content">
           <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="updateModalLabel">Update Student</h5>
-       
+
           </div>
           <div class="modal-body">
             <div class="mb-3">
@@ -68,14 +67,19 @@
   });
   </script>
 
-
+  @if(session('showUpdateModal'))
   <script>
-    $('#updateModal').on('hidden.bs.modal', function () {
-        window.location.href = "{{ route('home') }}";
+    document.addEventListener('DOMContentLoaded', function () {
+      const modal = new bootstrap.Modal(document.getElementById('updateModal'));
+      modal.show();
     });
   </script>
+  @endif
 
-  
+
+
+
+
 
 </body>
 

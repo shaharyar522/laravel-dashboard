@@ -65,7 +65,7 @@
     <nav class="side-bar">
       <div class="user-p">
 
-    <img src="{{ asset('images/Profile picture.png') }}" alt="Admin">
+        <img src="{{ asset('images/Profile picture.png') }}" alt="Admin">
 
 
         <p>Admin</p>
@@ -159,14 +159,26 @@
               <td>{{$student -> class}}</td>
               <td>{{$student -> roll_number}}</td>
               <td>{{$student -> dob}}</td>
-              <td> <a href="{{route('single-user-id',$student -> id)}}" class="btn btn-primary btn sm">View</a>
-
-                <a href="{{ route('student_recod_delete', $student->id) }}" class="btn btn-danger btn-sm delete-btn"
-                  data-id="{{ $student->id }}" data-name="{{ $student->name }}">
-                  Delete
+              <td>
+                <a href="{{ route('single-user-id', $student->id) }}"
+                  class="btn btn-info btn-sm d-inline-flex align-items-center">
+                  <i class="fas fa-eye me-1"></i> View
                 </a>
-                <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">Update</a>
+
+
+                <a href="{{ route('students.edit', $student->id) }}"
+                  class="btn btn-warning btn-sm d-inline-flex align-items-center">
+                  <i class="fas fa-pen me-1"></i> Edit
+                </a>
+                <a href="{{ route('student_recod_delete', $student->id) }}"
+                  class="btn btn-danger btn-sm delete-btn d-inline-flex align-items-center" data-id="{{ $student->id }}"
+                  data-name="{{ $student->name }}">
+                  <i class="fas fa-trash me-1"></i> Delete
+                </a>
+
+                
               </td>
+
             </tr>
             @endforeach
 
@@ -177,9 +189,9 @@
 
 
 
-      {{-- add student then this model can open --}}
+      {{-- add student add buttun then this model can open --}}
 
-        <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentModalLabel"
+      <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -231,7 +243,7 @@
 
           </div>
         </div>
-       </div>
+      </div>
     </section>
 
 
@@ -332,28 +344,98 @@
     </script>
 
     @if(session('success'))
-<script>
-    Swal.fire({
+    <script>
+      Swal.fire({
         icon: 'success',
         title: 'Success',
         text: '{{ session('success') }}',
         confirmButtonText: 'OK'
     });
-</script>
-@endif
+    </script>
+    @endif
 
-@if(session('error'))
-<script>
-    Swal.fire({
+    @if(session('error'))
+    <script>
+      Swal.fire({
         icon: 'info',
         title: 'No Update',
         text: '{{ session('error') }}',
         confirmButtonText: 'OK'
     });
-</script>
-@endif
+    </script>
+    @endif
 
 
+
+
+
+
+
+
+
+
+
+    {{-- edit model --}}
+
+
+    @if(session('showUpdateModal') && session('student'))
+    @php
+    $student = session('student');
+    @endphp
+
+    <!-- Modal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <form method="POST" action="{{ route('update_student_record', $student['id']) }}">
+          @csrf
+          @method('PUT')
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="updateModalLabel">Update Student</h5>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" value="{{ $student['name'] }}">
+              </div>
+              <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" value="{{ $student['email'] }}">
+              </div>
+              <div class="mb-3">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" name="phone" value="{{ $student['phone'] }}">
+              </div>
+              <div class="mb-3">
+                <label for="class">Class</label>
+                <input type="text" class="form-control" name="class" value="{{ $student['class'] }}">
+              </div>
+              <div class="mb-3">
+                <label for="roll_number">Roll Number</label>
+                <input type="text" class="form-control" name="roll_number" value="{{ $student['roll_number'] }}">
+              </div>
+              <div class="mb-3">
+                <label for="dob">DOB</label>
+                <input type="date" class="form-control" name="dob" value="{{ $student['dob'] }}">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a href="{{ route('home') }}" class="btn btn-secondary">Cancel</a>
+              <button type="submit" class="btn btn-success">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Show modal only when session flag is set -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+      const modal = new bootstrap.Modal(document.getElementById('updateModal'));
+      modal.show();
+    });
+    </script>
+    @endif
 
 
 
