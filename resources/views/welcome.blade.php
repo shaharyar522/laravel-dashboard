@@ -17,10 +17,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" />
 
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- jQuery (required for Bootstrap + AJAX) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
 
   <!-- Bootstrap JS (include after jQuery) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -150,15 +147,15 @@
           <tbody>
             <!-- no main es ko add kar rah ahun jo main users ka table  main data hian jo user aa ka signup kya hian  -->
 
-            @foreach ($data as $id => $student)
+            @foreach ($data as  $id => $student)
             <tr>
-              <td>{{$loop->iteration }}</td>
-              <td>{{$student -> name}}</td>
-              <td>{{$student -> email}}</td>
-              <td>{{$student -> phone}}</td>
-              <td>{{$student -> class}}</td>
-              <td>{{$student -> roll_number}}</td>
-              <td>{{$student -> dob}}</td>
+              <td>{{$student->id }}</td>
+              <td>{{$student->name}}</td>
+              <td>{{$student->email}}</td>
+              <td>{{$student->phone}}</td>
+              <td>{{$student->class}}</td>
+              <td>{{$student->roll_number}}</td>
+              <td>{{$student->dob}}</td>
               <td>
                 <a href="{{ route('single-user-id', $student->id) }}"
                   class="btn btn-info btn-sm d-inline-flex align-items-center">
@@ -175,18 +172,19 @@
                   data-name="{{ $student->name }}">
                   <i class="fas fa-trash me-1"></i> Delete
                 </a>
-
-                
               </td>
-
             </tr>
             @endforeach
-
-
+             
           </tbody>
         </table>
+        
+        <div>
+            {{$data->links('pagination::bootstrap-5')}}
+          </div>
       </section>
 
+       
 
 
       {{-- add student add buttun then this model can open --}}

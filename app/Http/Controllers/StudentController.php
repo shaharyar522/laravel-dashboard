@@ -12,7 +12,7 @@ class StudentController extends Controller
     // jo kay main nay wahan par loop ko use kya ina 
     public function show()
     {
-        $student = DB::table('students')->get();
+        $student = DB::table('students')->paginate(4);
         return view('welcome', ['data' => $student]);
     }
 
